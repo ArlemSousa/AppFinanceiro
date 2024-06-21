@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fina.Core.Requests.Categories
+namespace Fina.Core.Requests.Transactions
 {
-    public class GetCategororyByIdRequest : Request
+    public class DeleteTransactionRequest :Request
     {
         public long Id { get; set; }
     }

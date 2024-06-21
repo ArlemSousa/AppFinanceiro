@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fina.Core.Requests.Categories
+namespace Fina.Core.Responses
 {
-    public class GetCategororyByIdRequest : Request
+    internal class PagedResponse
     {
-        public long Id { get; set; }
     }
 }

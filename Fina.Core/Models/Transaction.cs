@@ -16,6 +16,8 @@ namespace Fina.Core.Models
 
         public EtransactionType Type { get; set; } = EtransactionType.WithDaw;
 
+        public decimal Amount { get; set; }
+
         public long CategoryId { get; set; }
         public Category Category { get; set; } = null!;
 

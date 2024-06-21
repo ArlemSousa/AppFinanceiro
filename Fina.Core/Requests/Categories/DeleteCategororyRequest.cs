@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Fina.Core.Requests.Categories
 {
-    internal class DeleteCategororyRequest : Request
+    public class DeleteCategororyRequest : Request
     {
+        public long Id {  get; set; }
     }
 }
