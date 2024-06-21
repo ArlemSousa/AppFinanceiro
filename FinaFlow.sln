@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fina.Api", "Fina.Api\Fina.Api.csproj", "{6ABE71A4-BAA5-415E-8069-0DA32125545E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fina.Web", "Fina.Web\Fina.Web.csproj", "{D603148A-A832-4362-9000-1CABCFCDD62C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fina.Core", "Fina.Core\Fina.Core.csproj", "{9F68B0C9-C705-4B6E-907A-CBF5D16D33BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ABE71A4-BAA5-415E-8069-0DA32125545E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ABE71A4-BAA5-415E-8069-0DA32125545E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ABE71A4-BAA5-415E-8069-0DA32125545E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ABE71A4-BAA5-415E-8069-0DA32125545E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D603148A-A832-4362-9000-1CABCFCDD62C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D603148A-A832-4362-9000-1CABCFCDD62C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D603148A-A832-4362-9000-1CABCFCDD62C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D603148A-A832-4362-9000-1CABCFCDD62C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F68B0C9-C705-4B6E-907A-CBF5D16D33BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F68B0C9-C705-4B6E-907A-CBF5D16D33BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F68B0C9-C705-4B6E-907A-CBF5D16D33BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F68B0C9-C705-4B6E-907A-CBF5D16D33BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD429623-BB9F-4FED-808A-8919CEEEE1E5}
+	EndGlobalSection
+EndGlobal
