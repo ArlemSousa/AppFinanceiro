@@ -2,6 +2,7 @@
 using Fina.Core.Requests.Categories;
 using Fina.Core.Responses;
 using Fina.Core.Services;
+using System.Net.Http.Json;
 
 namespace Fina.App.Services
 {
@@ -10,29 +11,38 @@ namespace Fina.App.Services
         //criar o client
         private readonly HttpClient _client = httpClientFactory.CreateClient(WebConfiguration.HttpClientName);
 
-        public Task<Response<Category?>> CreateAsync(CreateCategoryRequest request)
+        public async Task<Response<Category?>> CreateAsync(CreateCategoryRequest request)
         {
-            throw new NotImplementedException();
+            //fazendo um httpRequest e convertendo pra json
+            var result = await _client.PostAsJsonAsync("v1/categories", request);
+            return await result.Content.ReadFromJsonAsync<Response<Category?>>()
+                ?? new Response<Category?>(null, 400, "Falha ao criar categoria");
         }
 
-        public Task<Response<Category?>> DeleteAsync(DeleteCategororyRequest request)
+        public async Task<Response<Category?>> DeleteAsync(DeleteCategororyRequest request)
         {
-            throw new NotImplementedException();
+            var result = await _client.DeleteAsync($"v1/categories/{request.Id}");
+            return await result.Content.ReadFromJsonAsync<Response<Category?>>()
+                   ?? new Response<Category?>(null, 400, "Falha ao excluir a categoria");
         }
 
-        public Task<Response<PagedResponse<List<Category>?>>> GetAllAsync(GetAllCategororyRequest request)
+        public async Task<Response<PagedResponse<List<Category>?>>> GetAllAsync(GetAllCategororyRequest request)
         {
-            throw new NotImplementedException();
+            var pagedResponse = await _client.GetFromJsonAsync<PagedResponse<List<Category>?>>("v1/categories")
+                              ?? new PagedResponse<List<Category>?>(null, 400, "Não foi possível obter as categorias");
+            return new Response<PagedResponse<List<Category>?>>(pagedResponse, 200, "Categorias obtidas com sucesso"); // Ajuste aqui
         }
 
-        public Task<Response<Category?>> GetByIdAsync(GetCategororyByIdRequest request)
+        public async Task<Response<Category?>> GetByIdAsync(GetCategororyByIdRequest request)
+       => await _client.GetFromJsonAsync<Response<Category?>>($"v1/categories/{request.Id}")
+          ?? new Response<Category?>(null, 400, "Não foi possível obter a categoria");
+
+        public async Task<Response<Category?>> UpdateAsync(UpdateCategororyRequest request)
         {
-            throw new NotImplementedException();
+            var result = await _client.PutAsJsonAsync($"v1/categories/{request.Id}", request);
+            return await result.Content.ReadFromJsonAsync<Response<Category?>>()
+                   ?? new Response<Category?>(null, 400, "Falha ao atualizar a categoria");
         }
 
-        public Task<Response<Category?>> UpdateAsync(UpdateCategororyRequest request)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
