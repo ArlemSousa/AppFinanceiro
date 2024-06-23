@@ -2,12 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Fina.Core.Responses
 {
     public class PagedResponse<Tdata> : Response<Tdata>
     {
+
+
+        [JsonConstructor]
+        public PagedResponse(
+            Tdata? data,
+            int totalCount,
+            int currentPage = 1, 
+            int pageSize = Configuration.DefaultPageSize
+            ) : base(data)
+        {
+            Data = data;    
+            CurrentPage = currentPage;
+            PageSize = pageSize;
+            TotalCount = totalCount;
+        }
+
+        public PagedResponse(
+            Tdata? data, 
+            int code = Configuration.DefaultStatus,
+            string message = null 
+            ) : base (data, code, message)        
+        {
+            
+        }
+
         public int CurrentPage { get; set; }
         public int Totalpages => (int)Math.Ceiling(TotalCount / (double)PageSize );
         public int PageSize { get; set; } = Configuration.DefaultPageSize;
