@@ -1,13 +1,17 @@
-using Fina.Api.Data; // Make sure this namespace is correct
+using Fina.Api.Data;
+using Fina.Api.Services;
+using Fina.Core.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("FinantialContext")));
+
+builder.Services.AddTransient<ICategoryServices, CategoryServices>();
+builder.Services.AddTransient<ITransactionServices, TransactionServices>();
+
 var app = builder.Build();
-
-const string connectionString = "Data Source=JARVIS-PC\\SQLEXPRESS;Initial Catalog=FinantialDB;Integrated Security=True;Encrypt=False;Trust Server Certificate=True";
-
-// Use the full type name (Fina.Api.Data.Context) here:
-builder.Services.AddDbContext<Fina.Api.Data.AppDbContext>(x => x.UseSqlServer(connectionString));
 
 app.MapGet("/", () => "Api executando com Sucesso!");
 

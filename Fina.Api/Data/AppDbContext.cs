@@ -12,10 +12,7 @@ namespace Fina.Api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfiguration(new CategoryMapping());
-            //modelBuilder.ApplyConfiguration(new TransactionMapping());
-
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetCallingAssembly());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

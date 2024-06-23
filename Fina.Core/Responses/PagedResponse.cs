@@ -7,35 +7,32 @@ using System.Threading.Tasks;
 
 namespace Fina.Core.Responses
 {
-    public class PagedResponse<Tdata> : Response<Tdata>
+    public class PagedResponse<TData> : Response<TData>
     {
-
-
         [JsonConstructor]
         public PagedResponse(
-            Tdata? data,
+            TData? data,
             int totalCount,
-            int currentPage = 1, 
-            int pageSize = Configuration.DefaultPageSize
-            ) : base(data)
+            int currentPage = 1,
+            int pageSize = Configuration.DefaultPageSize)
+            : base(data)
         {
-            Data = data;    
+            Data = data;
+            TotalCount = totalCount;
             CurrentPage = currentPage;
             PageSize = pageSize;
-            TotalCount = totalCount;
         }
 
         public PagedResponse(
-            Tdata? data, 
+            TData? data,
             int code = Configuration.DefaultStatus,
-            string message = null 
-            ) : base (data, code, message)        
+            string? message = null)
+            : base(data, code, message)
         {
-            
         }
 
         public int CurrentPage { get; set; }
-        public int Totalpages => (int)Math.Ceiling(TotalCount / (double)PageSize );
+        public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);
         public int PageSize { get; set; } = Configuration.DefaultPageSize;
         public int TotalCount { get; set; }
     }
