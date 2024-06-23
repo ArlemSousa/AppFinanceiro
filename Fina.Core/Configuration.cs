@@ -13,7 +13,7 @@ namespace Fina.Core
         public const int DefaultPageSize = 25;
         public const int DefaultStatus = 200;
 
-        public static string BackendUrl { get; set; } = "http://localhost:5250";
-        public static string FrontendUrl { get; set; } = "http://localhost:7053";
+        public static string BackendUrl { get; set; } = "http://localhost:7248"; //passar a url da api
+        public static string FrontendUrl { get; set; } = "http://localhost:7053"; //passar a url do front
     }
 }
