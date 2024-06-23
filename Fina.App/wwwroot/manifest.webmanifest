@@ -1,6 +1,6 @@
 {
-  "name": "Fina.Web",
-  "short_name": "Fina.Web",
+  "name": "Fina.App",
+  "short_name": "Fina.App",
   "id": "./",
   "start_url": "./",
   "display": "standalone",
