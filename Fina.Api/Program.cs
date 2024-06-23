@@ -1,18 +1,20 @@
-using Fina.Api.Data;
-using Fina.Api.Services;
-using Fina.Core.Services;
-using Microsoft.EntityFrameworkCore;
+using Fina.Api;
+using Fina.Api.Common.Api;
+using Fina.Api.Endpoints;
+using Fina.Core;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("FinantialContext")));
-
-builder.Services.AddTransient<ICategoryServices, CategoryServices>();
-builder.Services.AddTransient<ITransactionServices, TransactionServices>();
+builder.AddConfiguration();
+builder.AddDataContexts();
+builder.AddCrossOrigin();
+builder.AddDocumentation();
+builder.AddServices();
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+    app.ConfigureDevEnvironment();
 
-app.MapGet("/", () => "Api executando com Sucesso!");
+app.UseCors(ApiConfiguration.CorsPolicyName);
+app.MapEndpoints();
 
 app.Run();
