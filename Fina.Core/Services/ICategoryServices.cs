@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Fina.Core.Services
 {
-    internal interface ICategoryServices
+    public interface ICategoryServices
     {
         
         Task<Response<Category?>> DeleteAsync(DeleteCategororyRequest request);
