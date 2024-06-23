@@ -10,6 +10,7 @@ builder.AddCrossOrigin();
 builder.AddDocumentation();
 builder.AddServices();
 
+//só vou chamar o swagger se o ambiente for dev, se for em ambiente de produção não chama
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
     app.ConfigureDevEnvironment();
