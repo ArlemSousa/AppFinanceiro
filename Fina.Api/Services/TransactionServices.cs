@@ -110,7 +110,7 @@ namespace Fina.Api.Services
             }
         }
 
-        public async Task<PagedResponse<List<Transaction>?>> GetByPeriodAsync(GetTransactionsByPeriodsRequests request)
+        public async Task<PagedResponse<List<Transaction>?>> GetByPeriodAsync(GetTransactionByPeriodsRequest request)
         {
             try
             {

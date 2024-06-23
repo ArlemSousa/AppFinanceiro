@@ -21,10 +21,6 @@
     <ProjectReference Include="..\Fina.Core\Fina.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Endpoints\Transactions\" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
