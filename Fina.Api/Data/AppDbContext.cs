@@ -1,6 +1,7 @@
 ﻿using Fina.Api.Data.Mapping;
 using Fina.Core.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Fina.Api.Data
 {
@@ -11,8 +12,10 @@ namespace Fina.Api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new CategoryMapping());
-            modelBuilder.ApplyConfiguration(new TransactionMapping());
+            //modelBuilder.ApplyConfiguration(new CategoryMapping());
+            //modelBuilder.ApplyConfiguration(new TransactionMapping());
+
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetCallingAssembly());
         }
     }
 }
