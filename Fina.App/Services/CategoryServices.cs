@@ -13,10 +13,30 @@ namespace Fina.App.Services
 
         public async Task<Response<Category?>> CreateAsync(CreateCategoryRequest request)
         {
-            //fazendo um httpRequest e convertendo pra json
-            var result = await _client.PostAsJsonAsync("v1/categories", request);
-            return await result.Content.ReadFromJsonAsync<Response<Category?>>()
-                ?? new Response<Category?>(null, 400, "Falha ao criar categoria");
+            try
+            {
+                var result = await _client.PostAsJsonAsync("v1/categories", request);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return await result.Content.ReadFromJsonAsync<Response<Category?>>();
+                }
+                else
+                {
+                    var errorResponse = await result.Content.ReadAsStringAsync();
+                    return new Response<Category?>(null, (int)result.StatusCode, $"Erro na requisição: {errorResponse}");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Capture and log the exception details for debugging
+                // You can use a logging framework (e.g., Serilog, NLog) or write to a file
+                Console.WriteLine($"Exceção ao criar categoria: {ex.Message}");
+
+                // Return a generic error response to the user
+                return new Response<Category?>(null, 500, "Erro interno ao processar a requisição");
+            }
+
         }
 
         public async Task<Response<Category?>> DeleteAsync(DeleteCategororyRequest request)
@@ -30,7 +50,7 @@ namespace Fina.App.Services
         {
             var pagedResponse = await _client.GetFromJsonAsync<PagedResponse<List<Category>?>>("v1/categories")
                               ?? new PagedResponse<List<Category>?>(null, 400, "Não foi possível obter as categorias");
-            return new Response<PagedResponse<List<Category>?>>(pagedResponse, 200, "Categorias obtidas com sucesso"); // Ajuste aqui
+            return new Response<PagedResponse<List<Category>?>>(pagedResponse, 200, "Categorias obtidas com sucesso"); 
         }
 
         public async Task<Response<Category?>> GetByIdAsync(GetCategororyByIdRequest request)

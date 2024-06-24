@@ -46,7 +46,7 @@ public static class BuildExtension
                 ApiConfiguration.CorsPolicyName,
                 policy => policy
                     .WithOrigins([
-                        Configuration.BackendUrl, 
+                        Configuration.BackendUrl,
                         Configuration.FrontendUrl
                     ])
                     .AllowAnyMethod()
