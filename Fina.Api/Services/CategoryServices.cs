@@ -25,14 +25,11 @@ namespace Fina.Api.Services
                 await _context.Categories.AddAsync(category);
                 await _context.SaveChangesAsync();
 
-                return new Response<Category?>(data: category, code: 201, message: "Categoria Criada com sucesso");
+                return new Response<Category?>(category, 201, "Categoria criada com sucesso!");
             }
-            catch (DbUpdateException ex)
+            catch
             {
-                Console.WriteLine($"Erro ao criar a categoria: {ex.Message}");
-
-                // Return uma mensagem de erro
-                return new Response<Category?>(data: null, code: 500, message: "Erro ao criar a categoria.");
+                return new Response<Category?>(null, 500, "Não foi possível criar a categoria");
             }
         }
 
