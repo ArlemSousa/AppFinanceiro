@@ -16,7 +16,7 @@ public static class Endpoint
         //grupo 1 -  vazio, só pra dar um start na aplicação
         endpoints.MapGroup("/")
             .WithTags("Health Check")
-            .MapGet("/", () => new { message = "OK" });
+            .MapGet("/", () => new { message = "Api Funcionando, para acessar a documentação do swagger digite /swagger na url..." });
 
         //grupo 2 - grupo mapeamento de rotas de categorias
         endpoints.MapGroup("v1/categories")

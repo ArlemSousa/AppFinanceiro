@@ -41,8 +41,8 @@ namespace Fina.Core.Responses
         public TData? Data { get; set; }
 
         [JsonIgnore]
-        public bool IsSuccess { get { return _code == 200; } }
-        //public bool IsSuccsess => _code is > 200 and < 299;
+        //public bool IsSuccess { get { return _code == 200; } }
+        public bool IsSuccess => _code is >= 200 and < 299;
 
     }
 }
