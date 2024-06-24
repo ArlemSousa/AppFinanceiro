@@ -52,6 +52,7 @@ public static class BuildExtension
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials()
+                    .SetIsOriginAllowed(origin => true)
             ));
     }
 
