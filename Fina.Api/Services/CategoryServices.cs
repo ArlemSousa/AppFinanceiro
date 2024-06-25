@@ -106,44 +106,35 @@ namespace Fina.Api.Services
             }
         }
 
-        public async Task<Response<PagedResponse<List<Category>?>>> GetAllAsync(GetAllCategororyRequest request)
+        public async Task<PagedResponse<List<Category>?>> GetAllAsync(GetAllCategororyRequest request)
         {
-            try
+             try
             {
-                //Montar a query
-                var query = _context.Categories.AsNoTracking();
+                var query = context
+                    .Categories
+                    .AsNoTracking()
+                    .Where(x => x.UserId == request.UserId)
+                    .OrderBy(x => x.Title);
 
-                // Aplicando o filtro
-                if (!string.IsNullOrEmpty(request.UserId))
-                {
-                    query = query.Where(c => c.UserId == request.UserId);
-                }
-              
-                // Aplicar a paginação no filtro
-                var totalItems = await query.CountAsync();
                 var categories = await query
                     .Skip((request.PageNumber - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .ToListAsync();
 
-                var pagedResponse = new PagedResponse<List<Category>?>(
-                    data: categories,
-                    totalCount: totalItems, // <-- Me certificar de fornecer este argumento
-                    currentPage: request.PageNumber,
-                    pageSize: request.PageSize
-                );
+                var count = await query.CountAsync();
 
-                return new Response<PagedResponse<List<Category>?>>(data: pagedResponse, code: 200, message: "Categorias obtidas com sucesso.");
+                return new PagedResponse<List<Category>?>(
+                    categories,
+                    count,
+                    request.PageNumber,
+                    request.PageSize);
             }
+
             catch (Exception ex)
             {
                 Console.WriteLine($"Error getting categories: {ex.Message}");
-                return new Response<PagedResponse<List<Category>?>>(data: null, code: 500, message: "Erro ao obter categorias.");
+                return new PagedResponse<List<Category>?>(null, 500, "Não foi possível consultar as categorias");
             }
         }
-
-
-
-
     }
 }
