@@ -1,48 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
-namespace Fina.Core.Responses
+namespace Fina.Core.Responses;
+
+public class Response<TData>
 {
+    private int _code = Configuration.DefaultStatus;
 
-    //new response<Category>
-    //new Response<Transaction>
-    public class Response<TData>
+    [JsonConstructor]
+    public Response()
+        => _code = Configuration.DefaultStatus;
+
+    public Response(
+        TData? data,
+        int code = Configuration.DefaultStatus,
+        string? message = null)
     {
-        private int _code = Configuration.DefaultStatus;
-
-        //padrão - informar que é o construtor padrão
-        [JsonConstructor]
-        public Response()
-        {
-            _code = Configuration.DefaultStatus;
-        }
-
-
-        //construtor para instanciar os responses de categoria e reponses de transações 
-        //var res = new Response<Category>(Model);
-        //optional parameters
-        public Response(
-            TData? data,
-            int code = Configuration.DefaultStatus,
-            string? message = null)
-        {
-            _code = code;
-            Message = message;
-            Data = data;
-
-        }
-
-        public string? Message { get; set; }
-
-        public TData? Data { get; set; }
-
-        [JsonIgnore]
-        //public bool IsSuccess { get { return _code == 200; } }
-        public bool IsSuccess => _code is >= 200 and < 299;
-
+        Data = data;
+        _code = code;
+        Message = message;
     }
+
+    public TData? Data { get; set; }
+    public string? Message { get; set; }
+
+    [JsonIgnore]
+    public bool IsSuccess => _code is >= 200 and <= 299;
 }

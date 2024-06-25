@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fina.Core", "Fina.Core\Fina
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fina.App", "Fina.App\Fina.App.csproj", "{47684DDD-366E-482D-A0E2-E22C71A57748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fina.WebApp", "Fina.WebApp\Fina.WebApp.csproj", "{CD1DA916-CF07-4F29-88E6-908CBB9C79C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fina.WebApp", "Fina.WebApp\Fina.WebApp.csproj", "{CD1DA916-CF07-4F29-88E6-908CBB9C79C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

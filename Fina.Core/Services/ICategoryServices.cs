@@ -16,6 +16,6 @@ namespace Fina.Core.Services
         Task<Response<Category?>> GetByIdAsync(GetCategororyByIdRequest request);
         Task<Response<Category?>> UpdateAsync(UpdateCategororyRequest request);
         Task<Response<Category?>> CreateAsync(CreateCategoryRequest request);
-        Task<Response<PagedResponse<List<Category>?>>> GetAllAsync(GetAllCategororyRequest request);
+        Task<PagedResponse<List<Category>?>> GetAllAsync(GetAllCategororyRequest request);
     }
 }
