@@ -1,0 +1,67 @@
+﻿@page "/login"
+
+@using MudBlazor
+@using System.ComponentModel.DataAnnotations
+
+<MudThemeProvider IsDarkMode="true"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center justify-center mud-height-full">
+    <MudPaper Class="pa-8 mud-elevation-10" Elevation="2">
+        <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">Login</MudText>
+
+        <EditForm Model="@_model" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator/>
+
+            <MudTextField 
+                Label="Usuário" 
+                Variant="Variant.Outlined" 
+                @bind-Value="_model.Username" 
+                For="@(() => _model.Username)" 
+                Required="true" 
+                FullWidth="true" 
+                Margin="Margin.Normal" 
+            />
+
+            <MudTextField 
+                Label="Senha" 
+                Variant="Variant.Outlined" 
+                @bind-Value="_model.Password" 
+                For="@(() => _model.Password)" 
+                InputType="InputType.Password" 
+                Required="true" 
+                FullWidth="true" 
+                Margin="Margin.Normal" 
+            />
+
+            <MudButton 
+                Variant="Variant.Filled" 
+                Color="Color.Primary" 
+                FullWidth="true" 
+                Type="submit"
+                Disabled="@(!context.Validate())" 
+            >
+                Entrar
+            </MudButton>
+        </EditForm>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private LoginModel _model = new();
+
+    private class LoginModel
+    {
+        [Required(ErrorMessage = "O nome de usuário é obrigatório.")]
+        public string Username { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "A senha é obrigatória.")]
+        public string Password { get; set; } = string.Empty;
+    }
+
+    private async Task OnValidSubmit()
+    {
+        // TODO: Lógica de autenticação aqui
+    }
+}
